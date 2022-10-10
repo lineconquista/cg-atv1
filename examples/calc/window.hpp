@@ -14,7 +14,7 @@ protected:
 private:
   static int const column{4};
   static int const line{5};
-  static int const maxDigits{20};
+  static int const maxDigits{30};
   static constexpr char buttons[maxDigits] = {'c', 'x', '%', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '0', ' ', ' ', '='};
   int pos = 0;
   

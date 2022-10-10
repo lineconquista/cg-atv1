@@ -17,7 +17,7 @@ void Window::startCalc() {
 vector<float> Window::getNumbers(){
   vector<float> n;
   string num = "";
-  for(int i = 0; i < 20; i++){
+  for(int i = 0; i < maxDigits; i++){
       char keyValue = digits.at(i);
       if (isdigit(keyValue)){
         num += keyValue;
@@ -34,7 +34,7 @@ vector<float> Window::getNumbers(){
 //Retorna vetor com apenas os operadores utilizados na expressão
 vector<char> Window::getOperators(){
   vector<char> operators;
-  for(int i = 0; i < 20; i++){
+  for(int i = 0; i < maxDigits; i++){
       char keyValue = digits.at(i);
       if (!isdigit(keyValue) && keyValue != '\0'){
         operators.push_back(keyValue);
@@ -235,7 +235,7 @@ void Window::onPaintUI() {
             }else if(!isdigit(valueKey)){
               ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0);
 
-              if (ImGui::Button(buttonText.c_str(), ImVec2(-1, buttonHeight)) && valueKey != ' ') {
+              if (ImGui::Button(buttonText.c_str(), ImVec2(-1, buttonHeight)) && valueKey != ' ' && pos < maxDigits - 1) {
 
                 if(m_calcState == GameState::Finished){
                       startCalc();
@@ -253,15 +253,15 @@ void Window::onPaintUI() {
             //Botão para adicionar os números
             }else{                      
               ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0);    
-              if (ImGui::Button(buttonText.c_str(), ImVec2(-1, buttonHeight))) {
+              if (ImGui::Button(buttonText.c_str(), ImVec2(-1, buttonHeight)) && pos < maxDigits - 1) {
 
                 if(m_calcState == GameState::Finished){
                       startCalc();
                 }
 
-                if(pos==20){
+                if(pos==maxDigits){
                   digits.at(pos)= valueKey;
-                }else if (pos != 20 && !(pos > 0 && valueKey == '0' && digits.at(pos-1) == '/')){
+                }else if (pos != maxDigits && !(pos > 0 && valueKey == '0' && digits.at(pos-1) == '/')){
                     digits.at(pos)= valueKey;
                     pos += 1;
                 }
