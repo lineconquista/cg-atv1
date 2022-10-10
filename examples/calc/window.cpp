@@ -194,7 +194,9 @@ void Window::onPaintUI() {
               ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0);   
 
               if(ImGui::Button(buttonText.c_str(), ImVec2(-1, buttonHeight))){
-                m_calcState = GameState::Finished;
+                if(checkLastNumber() && getNumbers().size() > 1){
+                  m_calcState = GameState::Finished;
+                }
               }
 
               ImGui::PopStyleColor(2);
@@ -224,7 +226,7 @@ void Window::onPaintUI() {
             }else if(!isdigit(valueKey)){
               ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0);
 
-              if (ImGui::Button(buttonText.c_str(), ImVec2(-1, buttonHeight))) {
+              if (ImGui::Button(buttonText.c_str(), ImVec2(-1, buttonHeight)) && valueKey != ' ') {
 
                 if(m_calcState == GameState::Finished){
                       startCalc();

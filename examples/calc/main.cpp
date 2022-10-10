@@ -7,7 +7,7 @@ int main(int argc, char **argv) {
 
     // Create OpenGL window
     Window window;
-    window.setWindowSettings({.width = 300, .height = 500, .title = "Calculator"});
+    window.setWindowSettings({.width = 250, .height = 500, .title = "Calculator"});
 
     // Run application
     app.run(window);
