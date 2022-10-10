@@ -13,6 +13,7 @@ void Window::startCalc() {
   pos = 0;
 }
 
+//Retorna vetor com apenas o números da expressão incluindo números com mais de 1 dígito
 vector<float> Window::getNumbers(){
   vector<float> n;
   string num = "";
@@ -30,6 +31,7 @@ vector<float> Window::getNumbers(){
   return n;
 }
 
+//Retorna vetor com apenas os operadores utilizados na expressão
 vector<char> Window::getOperators(){
   vector<char> operators;
   for(int i = 0; i < 20; i++){
@@ -41,6 +43,7 @@ vector<char> Window::getOperators(){
   return operators;
 }
 
+//Realiza os cálculos da expressão, primeiro com os operadores de divisão, multiplicação e porcentagem, da direita para a esquerda. E posteriormente as operações de soma e subtração
 float Window::calc(vector<char> operators, vector<float> numbers){
   vector<char> newOperators;
   vector<float> newNumbers;
@@ -101,12 +104,14 @@ float Window::calc(vector<char> operators, vector<float> numbers){
   return result;
 }
 
+//Retorno o resultado da expressão
 float Window::getResult() {
   vector<char> operators = getOperators();
   vector<float> numbers = getNumbers();
   return calc(operators, numbers);
 }
 
+//Retorna a expressão que será exibida na tela da calculadora. Caso o estado seja running, ou seja, estamos aguardando novos dígitos/operadores será exibida a expressão completa. Caso o estado seja Finished, será exbidido o resultado final
 string Window::getExpression(){
   string text = "";
 
@@ -130,6 +135,7 @@ string Window::getExpression(){
   return text;
 }
 
+//Verifica se o último botão clicado representava um número, esse método auxilia para que não seja possível adicionar operadores após outro operador
 bool Window::checkLastNumber(){
   return pos == 0 ? false : isdigit(digits[pos-1]) ;
 }
@@ -188,6 +194,7 @@ void Window::onPaintUI() {
       
             ImGui::PushID(i);
 
+            //Botão de igualdade para calcular o resultado da expressão
             if(valueKey=='='){     
               ImGui::PushStyleColor(ImGuiCol_Button, (ImVec4)ImColor(192, 136, 170));
               ImGui::PushStyleColor(ImGuiCol_ButtonHovered, (ImVec4)ImColor(218, 154, 192));
@@ -200,7 +207,7 @@ void Window::onPaintUI() {
               }
 
               ImGui::PopStyleColor(2);
-            
+            //Botão para apagar o último número/operador digitado
             }else if(valueKey=='x'){
               ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0);  
 
@@ -217,12 +224,14 @@ void Window::onPaintUI() {
                       break;
                 }
               }
+            //Botão para apagar toda a expressão
             }else if(valueKey=='c'){
               ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0);  
 
               if (ImGui::Button(buttonText.c_str(), ImVec2(-1, buttonHeight))) {
                   startCalc();
               }
+            //Botão para adicionar os operadores
             }else if(!isdigit(valueKey)){
               ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0);
 
@@ -241,6 +250,7 @@ void Window::onPaintUI() {
                 }
 
               }
+            //Botão para adicionar os números
             }else{                      
               ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 0.0);    
               if (ImGui::Button(buttonText.c_str(), ImVec2(-1, buttonHeight))) {
@@ -251,7 +261,7 @@ void Window::onPaintUI() {
 
                 if(pos==20){
                   digits.at(pos)= valueKey;
-                }else if (pos != 20 && !(valueKey == '0' && digits.at(pos-1) == '/')){
+                }else if (pos != 20 && !(pos > 0 && valueKey == '0' && digits.at(pos-1) == '/')){
                     digits.at(pos)= valueKey;
                     pos += 1;
                 }
