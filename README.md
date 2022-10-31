@@ -24,7 +24,7 @@ A ideia para essa atividade foi implementar um jogo: https://lineconquista.githu
 
 Nesse jogo você controla o que irei chamar de Collector, na parte inferior da tela, na qual é possível movimenta-lo para a esquerda e direita com as teclas left, right, a e d. Segurando elas o Collector ganha velocidade, ao soltar volta a sua velocidade normal. 
 
-Ao longo do jogo objetos caem do topo da tela até a base, o objetivo é se mover para coleta-los quando há a colisão, assim uma vez que o Collector colide com um dos objetos o jogador ganha 10 pontos (visualização no topo de tela), porém se deixar o objeto cair e não coleta-lo perde 5 pontos. Se o usuário chegar a uma pontuação negativa, o jogo é encerrado. Além disso, conforme o jogador ganha pontos os objetos irão cair mais rapidamente.
+Ao longo do jogo objetos caem do topo da tela até a base, o objetivo é se mover para coleta-los quando há a colisão, assim uma vez que o Collector colide com um dos objetos o jogador ganha 15 pontos (visualização no topo de tela), porém se deixar o objeto cair e não coleta-lo perde 10 pontos. Se o usuário chegar a uma pontuação negativa, o jogo é encerrado. Além disso, conforme o jogador ganha pontos os objetos irão cair mais rapidamente.
 
 Por fim, há também o controle de alguns estados do jogo:
  - Inicialmente é necessário apertar ENTER para começar o jogo
