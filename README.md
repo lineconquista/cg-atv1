@@ -31,6 +31,8 @@ Por fim, há também o controle de alguns estados do jogo:
  - Durante o jogo é possível apertar a tecla P para pausa-lo.
  - Quando o jogo for encerrado, é possível apertar ENTER para começar um novo jogo.
  
+https://user-images.githubusercontent.com/71647583/199100048-74b59097-6934-4535-8e88-f7718a1ee23d.mp4
+
 ### Código
 
 O código é composto por window.cpp, objects.cpp, collector.cpp e starlayers.cpp.
