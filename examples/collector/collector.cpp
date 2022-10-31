@@ -34,12 +34,12 @@ void Collector::update(GameData &gameData) {
   //Movimento para lado esquerdo
   if (gameData.m_input[gsl::narrow<size_t>(Input::Left)]){
       m_translation.x = m_translation.x <=-0.92f ? -0.92f : m_translation.x - 0.003f - (m_distance * 0.003f);
-      m_distance += 0.01f;
+      m_distance += 0.10f;
   }
   //Movimento para lado direito
   else if (gameData.m_input[gsl::narrow<size_t>(Input::Right)]){
       m_translation.x = m_translation.x >= 0.92f ? 0.92f : m_translation.x + 0.003f + (m_distance * 0.003f);
-      m_distance += 0.01f;
+      m_distance += 0.10f;
   }else{
     m_distance = 0.00f;
   }
