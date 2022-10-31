@@ -135,7 +135,7 @@ void Objects::updateYAxis(double minY, GameData &gameData) {
   for (long long unsigned int i = 0; i < gameData.m_objects.size(); i++){
     if(gameData.m_objects.at(i).at(1) < -1.0f){
         gameData.m_objects.erase(gameData.m_objects.begin()+i, gameData.m_objects.begin()+i+1);
-        gameData.m_points = gameData.m_points - 20;
+        gameData.m_points = gameData.m_points - 10;
     }else{
         std::uniform_real_distribution realDist(minY, 0.08);
         gameData.m_objects.at(i).at(1) = gameData.m_objects.at(i).at(1) - realDist(m_randomEngine);

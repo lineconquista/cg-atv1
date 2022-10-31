@@ -34,12 +34,12 @@ void Collector::update(GameData &gameData) {
   //Movimento para lado esquerdo
   if (gameData.m_input[gsl::narrow<size_t>(Input::Left)]){
       m_translation.x = m_translation.x <=-0.92f ? -0.92f : m_translation.x - 0.003f - (m_distance * 0.003f);
-      m_distance += 0.10f;
+      m_distance += 0.30f;
   }
   //Movimento para lado direito
   else if (gameData.m_input[gsl::narrow<size_t>(Input::Right)]){
       m_translation.x = m_translation.x >= 0.92f ? 0.92f : m_translation.x + 0.003f + (m_distance * 0.003f);
-      m_distance += 0.10f;
+      m_distance += 0.30f;
   }else{
     m_distance = 0.00f;
   }
@@ -103,7 +103,7 @@ void Collector::check(GameData &gameData){
     auto const distance{glm::distance(m_translation, m_translationObject)};
     if (distance < gameData.m_scale * 0.9f + gameData.m_scale * 0.85f) {
       gameData.m_objects.erase(gameData.m_objects.begin()+i, gameData.m_objects.begin()+i+1);
-      gameData.m_points = gameData.m_points + 10;
+      gameData.m_points = gameData.m_points + 15;
     }
   }
 }
